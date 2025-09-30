@@ -172,7 +172,8 @@ if st.button("🚀 Lancer le traitement"):
         # Split
         grouped = df.groupby("Mission_Final")
         for mission, group in grouped:
-            mission_path = os.path.join(temp_dir, mission)
+            mission_clean = nettoyer_nom(mission).lower()
+            mission_path = os.path.join(temp_dir, mission_clean)
             os.makedirs(mission_path, exist_ok=True)
 
             excel_path = os.path.join(mission_path, f"{mission}.xlsx")
@@ -199,8 +200,9 @@ if st.button("🚀 Lancer le traitement"):
         added_files = 0
 
         with zipfile.ZipFile(output, "w") as zipf:
-            for mission in missions_selected:  # ✅ on prend seulement celles choisies
-                mission_dir = os.path.join(temp_dir, mission)
+            for mission in missions_selected:
+                mission_clean = nettoyer_nom(mission).lower()
+                mission_dir = os.path.join(temp_dir, mission_clean)
                 if os.path.exists(mission_dir):
                     for root, _, files in os.walk(mission_dir):
                         for file in files:
@@ -220,6 +222,9 @@ if st.button("🚀 Lancer le traitement"):
             )
         else:
             st.warning("⚠️ Aucun dossier trouvé pour votre compte.")
+            st.write("Missions sélectionnées:", missions_selected)
+            st.write("Dossiers générés:", os.listdir(temp_dir))
+
 
 
 
