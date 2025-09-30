@@ -13,7 +13,7 @@ st.markdown("<p>Accès réservé aux clients utilisateurs ADVENT+</p>", unsafe_a
 USERS = {
 
     "Valrhona SAS": {
-        "password": "1234",
+        "password": "tR#8bPz4&YqL1mXs",
         "missions": [
             "[131157] catman valrhona",
             "[106709]-valrhona sas rebond bu+ global",
@@ -24,7 +24,7 @@ USERS = {
         ]
     },
     "VALRHONA INC": {
-        "password": "1234",
+        "password": "xV4!mQ8^bZ1&nWtX",
         "missions": [
             "teleprospection cadaff 2025"
         ]
