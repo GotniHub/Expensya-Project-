@@ -59,7 +59,7 @@ st.sidebar.markdown(card_html, unsafe_allow_html=True)
 # Bouton déconnexion stylé
 if st.sidebar.button("🚪 Déconnexion"):
     st.session_state["auth_user"] = None
-    st.switch_page("Home.py")
+    st.switch_page("home.py")
 
 # -------------------------
 # Lien OneDrive (exemple)
@@ -122,26 +122,17 @@ if st.button("🚀 Lancer le traitement"):
 
         # Identifier les fichiers (rapport, matrice, zip interne)
         rapport_file, mapping_file, inner_zip_path = None, None, None
-
         for file in os.listdir(temp_dir):
-            f_lower = file.lower()
-
-            if f_lower.endswith(".xlsx") and "matrice" in f_lower:
+            if file.endswith(".xlsx") and "Matrice" in file:
                 mapping_file = os.path.join(temp_dir, file)
-
-            elif f_lower.endswith(".xlsx") and "matrice" not in f_lower:
-                # ⚡ prend le premier fichier Excel autre que la matrice comme Rapport
+            elif file.endswith(".xlsx"):
                 rapport_file = os.path.join(temp_dir, file)
-
-            elif f_lower.endswith(".zip"):
+            elif file.endswith(".zip"):
                 inner_zip_path = os.path.join(temp_dir, file)
 
-        # Vérification
         if not rapport_file or not mapping_file or not inner_zip_path:
             st.error("❌ Impossible de trouver Rapport, Matrice ou le ZIP interne")
-            st.write("👉 Fichiers trouvés :", os.listdir(temp_dir))  # debug
             st.stop()
-
 
         # Extraire le ZIP interne (justificatifs)
         justificatifs_dir = os.path.join(temp_dir, "justifs")
@@ -179,14 +170,12 @@ if st.button("🚀 Lancer le traitement"):
         df["Mission_Clean"] = df["Mission_Final"].apply(lambda x: nettoyer_nom(x).lower())
 
         # Split
-        # Split
         grouped = df.groupby("Mission_Final")
         for mission, group in grouped:
-            mission_clean = nettoyer_nom(mission)  # ⚡ uniformisation
-            mission_path = os.path.join(temp_dir, mission_clean)
+            mission_path = os.path.join(temp_dir, mission)
             os.makedirs(mission_path, exist_ok=True)
 
-            excel_path = os.path.join(mission_path, f"{mission_clean}.xlsx")
+            excel_path = os.path.join(mission_path, f"{mission}.xlsx")
             group.to_excel(excel_path, index=False)
 
             justif_path = os.path.join(mission_path, "justificatifs")
@@ -205,15 +194,13 @@ if st.button("🚀 Lancer le traitement"):
                             os.path.join(user_dir, file)
                         )
 
-
         # Archive uniquement les missions sélectionnées
         output = BytesIO()
         added_files = 0
 
         with zipfile.ZipFile(output, "w") as zipf:
-            for mission in missions_selected:
-                mission_clean = nettoyer_nom(mission)
-                mission_dir = os.path.join(temp_dir, mission_clean)
+            for mission in missions_selected:  # ✅ on prend seulement celles choisies
+                mission_dir = os.path.join(temp_dir, mission)
                 if os.path.exists(mission_dir):
                     for root, _, files in os.walk(mission_dir):
                         for file in files:
@@ -221,7 +208,6 @@ if st.button("🚀 Lancer le traitement"):
                             rel_path = os.path.relpath(full_path, temp_dir)
                             zipf.write(full_path, rel_path)
                             added_files += 1
-
 
 
         if added_files > 0:
