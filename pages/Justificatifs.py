@@ -208,8 +208,9 @@ if st.button("🚀 Lancer le traitement"):
         added_files = 0
 
         with zipfile.ZipFile(output, "w") as zipf:
-            for mission in missions_selected:  # ✅ on prend seulement celles choisies
-                mission_dir = os.path.join(temp_dir, mission)
+            for mission in missions_selected:
+                mission_clean = nettoyer_nom(mission)
+                mission_dir = os.path.join(temp_dir, mission_clean)
                 if os.path.exists(mission_dir):
                     for root, _, files in os.walk(mission_dir):
                         for file in files:
@@ -217,6 +218,7 @@ if st.button("🚀 Lancer le traitement"):
                             rel_path = os.path.relpath(full_path, temp_dir)
                             zipf.write(full_path, rel_path)
                             added_files += 1
+
 
 
         if added_files > 0:
