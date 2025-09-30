@@ -122,15 +122,21 @@ if st.button("🚀 Lancer le traitement"):
 
         # Identifier les fichiers (rapport, matrice, zip interne)
         rapport_file, mapping_file, inner_zip_path = None, None, None
+
         for file in os.listdir(temp_dir):
             f_lower = file.lower()
+
             if f_lower.endswith(".xlsx") and "matrice" in f_lower:
                 mapping_file = os.path.join(temp_dir, file)
-            elif f_lower.endswith(".xlsx") and "rapport" in f_lower:
+
+            elif f_lower.endswith(".xlsx") and "matrice" not in f_lower:
+                # ⚡ prend le premier fichier Excel autre que la matrice comme Rapport
                 rapport_file = os.path.join(temp_dir, file)
+
             elif f_lower.endswith(".zip"):
                 inner_zip_path = os.path.join(temp_dir, file)
 
+        # Vérification
         if not rapport_file or not mapping_file or not inner_zip_path:
             st.error("❌ Impossible de trouver Rapport, Matrice ou le ZIP interne")
             st.write("👉 Fichiers trouvés :", os.listdir(temp_dir))  # debug
