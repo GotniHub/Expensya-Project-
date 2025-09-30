@@ -179,12 +179,14 @@ if st.button("🚀 Lancer le traitement"):
         df["Mission_Clean"] = df["Mission_Final"].apply(lambda x: nettoyer_nom(x).lower())
 
         # Split
+        # Split
         grouped = df.groupby("Mission_Final")
         for mission, group in grouped:
-            mission_path = os.path.join(temp_dir, mission)
+            mission_clean = nettoyer_nom(mission)  # ⚡ uniformisation
+            mission_path = os.path.join(temp_dir, mission_clean)
             os.makedirs(mission_path, exist_ok=True)
 
-            excel_path = os.path.join(mission_path, f"{mission}.xlsx")
+            excel_path = os.path.join(mission_path, f"{mission_clean}.xlsx")
             group.to_excel(excel_path, index=False)
 
             justif_path = os.path.join(mission_path, "justificatifs")
@@ -202,6 +204,7 @@ if st.button("🚀 Lancer le traitement"):
                             os.path.join(justificatifs_dir, file),
                             os.path.join(user_dir, file)
                         )
+
 
         # Archive uniquement les missions sélectionnées
         output = BytesIO()
