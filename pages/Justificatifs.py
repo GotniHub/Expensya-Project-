@@ -123,16 +123,19 @@ if st.button("🚀 Lancer le traitement"):
         # Identifier les fichiers (rapport, matrice, zip interne)
         rapport_file, mapping_file, inner_zip_path = None, None, None
         for file in os.listdir(temp_dir):
-            if file.endswith(".xlsx") and "Matrice" in file:
+            f_lower = file.lower()
+            if f_lower.endswith(".xlsx") and "matrice" in f_lower:
                 mapping_file = os.path.join(temp_dir, file)
-            elif file.endswith(".xlsx"):
+            elif f_lower.endswith(".xlsx") and "rapport" in f_lower:
                 rapport_file = os.path.join(temp_dir, file)
-            elif file.endswith(".zip"):
+            elif f_lower.endswith(".zip"):
                 inner_zip_path = os.path.join(temp_dir, file)
 
         if not rapport_file or not mapping_file or not inner_zip_path:
             st.error("❌ Impossible de trouver Rapport, Matrice ou le ZIP interne")
+            st.write("👉 Fichiers trouvés :", os.listdir(temp_dir))  # debug
             st.stop()
+
 
         # Extraire le ZIP interne (justificatifs)
         justificatifs_dir = os.path.join(temp_dir, "justifs")
