@@ -10,6 +10,9 @@ from io import BytesIO
 st.set_page_config(page_title="Gestion des Missions", layout="wide")
 st.logo("LOGO.png", icon_image="Logom.png")
 st.title("📂 Générateur et accès aux dossiers missions")
+# Init session keys
+if "receipts_index" not in st.session_state:
+    st.session_state["receipts_index"] = {}
 
 # Vérifier la connexion
 if "auth_user" not in st.session_state or st.session_state["auth_user"] is None:
@@ -182,6 +185,10 @@ if st.button("🚀 Lancer le traitement"):
         if not rapport_file or not mapping_file or not inner_zip_path:
             st.error("❌ Impossible de trouver Rapport, Matrice ou le ZIP interne")
             st.stop()
+        # Build receipts index directly from the inner ZIP (handles subfolders)
+        st.session_state["receipts_index"] = build_receipts_index_from_zipfile(inner_zip_path)
+        st.success(f"🔍 Index justificatifs construit pour {len(st.session_state['receipts_index'])} références.")
+        st.info(f"📄 Total fichiers justificatifs: {sum(len(v) for v in st.session_state['receipts_index'].values())}")
 
         # Extraire le ZIP interne (justificatifs)
         justificatifs_dir = os.path.join(temp_dir, "justifs")
@@ -253,8 +260,9 @@ if st.button("🚀 Lancer le traitement"):
                 os.makedirs(user_dir, exist_ok=True)
 
                 # Copier les justificatifs correspondants
+                # Copier les justificatifs correspondants
                 ref = normaliser_ref(row.get("Référence", ""))
-                matching_files = st.session_state["receipts_index"].get(ref, [])
+                matching_files = st.session_state.get("receipts_index", {}).get(ref, [])
 
                 for (orig_name, data) in matching_files:
                     nom_depense = str(row.get("Nom de la dépense", "inconnu")).strip()
@@ -270,6 +278,7 @@ if st.button("🚀 Lancer le traitement"):
 
                     with open(os.path.join(user_dir, new_name), "wb") as f:
                         f.write(data)
+
 
 
 
