@@ -84,6 +84,25 @@ ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-s
 def nettoyer_nom(nom):
     """Nettoie les noms de dossiers/fichiers pour compatibilité cross-OS."""
     return re.sub(r'[<>:"/\\|?*]', "_", str(nom).strip()).lower()
+def normaliser_ref(x) -> str:
+    """
+    Retourne la référence sous forme de chaîne 'entière' (ex: 8784),
+    qu'elle vienne d'un float (8784.0), d'une string '8784 ', etc.
+    """
+    s = str(x).strip()
+    # Tente float -> int (gère '8784', '8784.0', '8784,0')
+    try:
+        s = s.replace(",", ".")
+        f = float(s)
+        i = int(f)
+        if f == float(i):
+            return str(i)
+    except Exception:
+        pass
+    # fallback: coupe avant le point éventuel
+    if "." in s:
+        s = s.split(".", 1)[0]
+    return s
 
 if st.button("🚀 Lancer le traitement"):
     try:
@@ -151,6 +170,21 @@ if st.button("🚀 Lancer le traitement"):
         justificatifs_dir = os.path.join(temp_dir, "justifs")
         with zipfile.ZipFile(inner_zip_path, "r") as inner_zip:
             inner_zip.extractall(justificatifs_dir)
+            
+        # --- 🔎 Index des fichiers justificatifs par préfixe de référence ---
+        from collections import defaultdict
+
+        all_files = [f for f in os.listdir(justificatifs_dir) if os.path.isfile(os.path.join(justificatifs_dir, f))]
+
+        files_by_ref = defaultdict(list)
+        for f in all_files:
+            # On prend les chiffres initiaux avant le 1er séparateur (_,-, espace, .)
+            m = re.match(r"^(\d+)(?:[_\-\.\s].*)?$", f)
+            if m:
+                files_by_ref[m.group(1)].append(f)
+
+        st.write("🔎 Index justificatifs construit pour", len(files_by_ref), "références.")
+        st.write("📄 Total fichiers justificatifs:", sum(len(v) for v in files_by_ref.values()))
 
         # Charger fichiers Excel
         df = pd.read_excel(rapport_file, sheet_name="Rapport")
@@ -216,32 +250,34 @@ if st.button("🚀 Lancer le traitement"):
                 user_dir = os.path.join(mois_dir, user_name)
                 os.makedirs(user_dir, exist_ok=True)
 
-                # Copier les justificatifs correspondants
-                for file in os.listdir(justificatifs_dir):
-                    if file.startswith(ref):
-                        nom_depense = str(row.get("Nom de la dépense", "inconnu")).strip()
-                        categorie = str(row.get("Catégorie", "inconnu")).strip()
+                ref = normaliser_ref(row.get("Référence", ""))
+                if not ref:
+                    continue
 
-                        # Formatage de la date
-                        date_val = None
-                        if "Date" in row:
-                            try:
-                                date_val = pd.to_datetime(row["Date"], errors="coerce").strftime("%Y-%m-%d")
-                            except Exception:
-                                date_val = "inconnu"
+                # Tous les fichiers dont le préfixe correspond à la réf normalisée
+                matching_files = files_by_ref.get(ref, [])
 
-                        # Construire un nom lisible
-                        base_name, ext = os.path.splitext(file)
-                        new_name = f"{ref}_{nom_depense}_{categorie}_{date_val}{ext}"
+                for file in matching_files:
+                    nom_depense = str(row.get("Nom de la dépense", "inconnu")).strip()
+                    categorie = str(row.get("Catégorie", "inconnu")).strip()
 
-                        # 🚨 Nettoyage des caractères interdits pour Windows
-                        new_name = re.sub(r'[<>:"/\\|?*]', '_', new_name)
+                    # Formatage de la date
+                    date_val = None
+                    if "Date" in row:
+                        try:
+                            date_val = pd.to_datetime(row["Date"], errors="coerce").strftime("%Y-%m-%d")
+                        except Exception:
+                            date_val = "inconnu"
 
-                        # Copier avec le nouveau nom propre
-                        shutil.copy(
-                            os.path.join(justificatifs_dir, file),
-                            os.path.join(user_dir, new_name)
-                        )
+                    base_name, ext = os.path.splitext(file)
+                    new_name = f"{ref}_{nom_depense}_{categorie}_{date_val}{ext}"
+                    new_name = re.sub(r'[<>:\"/\\|?*]', '_', new_name)  # nom Windows-safe
+
+                    shutil.copy(
+                        os.path.join(justificatifs_dir, file),
+                        os.path.join(user_dir, new_name)
+                    )
+
 
 
 
