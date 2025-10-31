@@ -163,7 +163,7 @@ if st.button("🚀 Lancer le traitement"):
         os.makedirs(temp_dir)
 
         # Sauvegarde du ZIP principal à partir de zip_content
-        outer_zip_path = os.path.join(temp_dir, "expensya_docs.zip")
+        outer_zip_path = os.path.join(temp_dir, "Expensya S1 extract 2025.zip")
         with open(outer_zip_path, "wb") as f:
             f.write(zip_content.getvalue())
 
