@@ -99,7 +99,26 @@ def lire_rapport(path: str) -> pd.DataFrame:
     if "Rapport" in xl.sheet_names:
         return xl.parse("Rapport")
     return xl.parse(xl.sheet_names[0])
-
+from collections import defaultdict
+def build_receipts_index_from_zipfile(zip_path: str) -> dict[str, list[tuple[str, bytes]]]:
+    idx = defaultdict(list)
+    with zipfile.ZipFile(zip_path, "r") as z:
+        for name in z.namelist():
+            if name.endswith("/"):      # ignorer les dossiers
+                continue
+            base = os.path.basename(name)
+            if not base:
+                continue
+            m = re.match(r"^(\d+)", base)   # réf = chiffres au début du nom
+            if not m:
+                continue
+            ref = m.group(1)
+            try:
+                data = z.read(name)        # bytes du fichier
+            except Exception:
+                continue
+            idx[ref].append((base, data))
+    return idx
 # =============================
 #        TRAITEMENT ZIP
 # =============================
@@ -182,7 +201,10 @@ if st.button("🚀 Lancer le traitement"):
             st.write("DEBUG – xlsx:", [os.path.basename(p) for p in xlsx_files])
             st.write("DEBUG – zip:", [os.path.basename(p) for p in zip_files])
             st.stop()
-
+        # Build receipts index directly from the inner ZIP (handles subfolders)
+        st.session_state["receipts_index"] = build_receipts_index_from_zipfile(inner_zip_path)
+        st.success(f"🔍 Index justificatifs construit pour {len(st.session_state['receipts_index'])} références.")
+        st.info(f"📄 Total fichiers justificatifs: {sum(len(v) for v in st.session_state['receipts_index'].values())}")
         # Lecture des données
         df = lire_rapport(rapport_file)
         df_map = lire_matrice(mapping_file)
