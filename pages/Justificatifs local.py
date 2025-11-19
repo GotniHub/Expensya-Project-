@@ -74,8 +74,9 @@ if st.sidebar.button("🚪 Déconnexion"):
 #     LIEN ONEDRIVE (EXEMPLE)
 # =============================
 # Exctraction S1 2025 (actuel) :
-ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/Ef8LL-Y_mNhOlCQlKHlQs1wBXzoorlA-dVNmoZ07zj3oNw?download=1"
-
+# ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/Ef8LL-Y_mNhOlCQlKHlQs1wBXzoorlA-dVNmoZ07zj3oNw?download=1"
+# Exctraction S2 2024 :
+ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/EahoQ8gXXhJLpKJy4FtfyvsBsKc7r60cII0KbVjkorzH6g?download=1"
 # =============================
 #         UTILITAIRES
 # =============================
