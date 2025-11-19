@@ -472,10 +472,13 @@ zip_for_calendar = st.file_uploader(
     type=["zip"],
     key="zip_for_calendar"
 )
-
+# 8) Métriques (tu choisis ce que “Dépenses” représente)
+nb_lignes = len(cal_df)
+nb_refs_uniques = cal_df["Référence"].astype(str).nunique()
 # Métriques
 col1, col2, col3 = st.columns(3)
-col1.metric("Dépenses", f"{len(cal_df):,}".replace(",", " "))
+# 👉 Si tu préfères le nombre de références uniques :
+col1.metric("Dépenses", f"{nb_refs_uniques:,}".replace(",", " "))
 col2.metric("Utilisateurs uniques", cal_df["Utilisateur"].nunique())
 col3.metric("Jours distincts", cal_df["Date"].dt.date.nunique())
 
