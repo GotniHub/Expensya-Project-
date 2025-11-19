@@ -204,7 +204,6 @@ if st.button("🚀 Lancer le traitement"):
         # Build receipts index directly from the inner ZIP (handles subfolders)
         st.session_state["receipts_index"] = build_receipts_index_from_zipfile(inner_zip_path)
         st.success(f"🔍 Index justificatifs construit pour {len(st.session_state['receipts_index'])} références.")
-        st.info(f"📄 Total fichiers justificatifs: {sum(len(v) for v in st.session_state['receipts_index'].values())}")
         # Lecture des données
         df = lire_rapport(rapport_file)
         df_map = lire_matrice(mapping_file)
@@ -307,6 +306,9 @@ if st.button("🚀 Lancer le traitement"):
             df["Client (Référence)"].astype(str).str.lower().isin(missions_lower) |
             df["Mission_Final"].astype(str).str.lower().isin(missions_lower)
         ].copy()
+        # Nombre de justificatifs pour les missions sélectionnées
+        nb_justifs_missions = df_filt["Référence"].astype(str).nunique()
+        st.info(f"📄 Justificatifs pour les missions sélectionnées : {nb_justifs_missions}")
 
         if df_filt.empty:
             st.warning("Aucune ligne du rapport ne correspond aux missions sélectionnées.")
@@ -507,26 +509,28 @@ else:
 #     type=["zip"],
 #     key="zip_for_calendar"
 # )
-# ====== DEBUG : comprendre pourquoi 228 ≠ 216 ======
-st.write("🚧 DEBUG — Lignes calendrier après filtres :", len(cal_df))
 
-# Nombre de lignes par mission
-st.write("Lignes par mission (Client (Référence)) :")
-st.dataframe(
-    cal_df.groupby("Client (Référence)")["Référence"]
-          .nunique()
-          .reset_index(name="Nb_lignes")
-)
 
-# Lignes suspectes : nom contenant 'total' ou montant vide
-suspect = cal_df[
-    cal_df["Nom de la dépense"].astype(str).str.contains("total", case=False, na=False)
-    | cal_df["TTC (EUR)"].isna()
-]
-st.write("Lignes suspectes (TOTAL / montant NaN) :")
-st.dataframe(
-    suspect[["Référence", "Date", "Nom de la dépense", "Client (Référence)", "MissionLib", "TTC (EUR)"]]
-)
+# # ====== DEBUG : comprendre pourquoi 228 ≠ 216 ======
+# st.write("🚧 DEBUG — Lignes calendrier après filtres :", len(cal_df))
+
+# # Nombre de lignes par mission
+# st.write("Lignes par mission (Client (Référence)) :")
+# st.dataframe(
+#     cal_df.groupby("Client (Référence)")["Référence"]
+#           .nunique()
+#           .reset_index(name="Nb_lignes")
+# )
+
+# # Lignes suspectes : nom contenant 'total' ou montant vide
+# suspect = cal_df[
+#     cal_df["Nom de la dépense"].astype(str).str.contains("total", case=False, na=False)
+#     | cal_df["TTC (EUR)"].isna()
+# ]
+# st.write("Lignes suspectes (TOTAL / montant NaN) :")
+# st.dataframe(
+#     suspect[["Référence", "Date", "Nom de la dépense", "Client (Référence)", "MissionLib", "TTC (EUR)"]]
+# )
 
 # (optionnel) export des lignes pour comparaison dans Excel
 # suspect.to_excel("debug_suspect.xlsx", index=False)
