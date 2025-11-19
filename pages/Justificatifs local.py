@@ -407,80 +407,145 @@ st.markdown(
     "- Clique sur un point pour voir les justificatifs du jour."
 )
 
-cal_file = st.file_uploader("Importer le fichier Rapport (.xlsx)", type=["xlsx"], key="cal_uploader")
+# 1) Rapport : fichier importé (prioritaire) OU données OneDrive déjà traitées
+cal_file = st.file_uploader(
+    "Importer le fichier Rapport (.xlsx)", 
+    type=["xlsx"], 
+    key="cal_uploader"
+)
 
 if cal_file is not None:
-    # Cas A : fichier importé (prioritaire)
+    # Cas A : fichier importé
     cal_df = pd.read_excel(cal_file, sheet_name="Rapport")
     cal_df["Date"] = pd.to_datetime(cal_df["Date"], errors="coerce")
 
-    # MissionLib depuis le mapping si dispo
+    # MissionLib depuis le mapping global si dispo (mat_map créée au moment du traitement OneDrive)
     map_dict = st.session_state.get("mat_map", {})
     if "MissionLib" not in cal_df.columns or cal_df["MissionLib"].isna().all():
         if map_dict:
-            cal_df["MissionLib"] = cal_df["Client (Référence)"].astype(str).map(map_dict)\
-                                   .fillna(cal_df["Client (Référence)"].astype(str))
+            cal_df["MissionLib"] = (
+                cal_df["Client (Référence)"]
+                .astype(str)
+                .map(map_dict)
+                .fillna(cal_df["Client (Référence)"].astype(str))
+            )
         else:
             cal_df["MissionLib"] = cal_df["Client (Référence)"].astype(str)
-
 else:
-    # Cas B : réutiliser les données OneDrive déjà traitées
+    # Cas B : réutiliser les données du rapport déjà traitées depuis OneDrive
     cal_df = st.session_state.get("cal_from_onedrive")
 
 # Garde-fou si rien n’est dispo
 if cal_df is None or cal_df.empty:
     st.warning("Aucune donnée de calendrier disponible. Lance d'abord le traitement ou importe le Rapport.")
     st.stop()
+# 🔹 Filtrer strictement sur les missions sélectionnées (y compris 106710)
+missions_set = {m.strip().lower() for m in missions_selected}
+cal_df = cal_df[
+    cal_df["Client (Référence)"].astype(str).str.lower().isin(missions_set)
+    | cal_df["MissionLib"].astype(str).str.lower().isin(missions_set)
+]
+# 2) Filtrer par missions sélectionnées (IMPORTANT)
+missions_set = {m.strip().lower() for m in missions_selected}
 
-# 🔹 Exclure les missions "NO REFACT" (toutes variantes) !!!!!!!!!!!!!!
-cal_df = cal_df[~cal_df["MissionLib"].astype(str).str.contains("NO REFACT", case=False, na=False)]
+cal_df = cal_df[
+    cal_df["Client (Référence)"].astype(str).str.lower().isin(missions_set)
+    | cal_df["MissionLib"].astype(str).str.lower().isin(missions_set)
+]
 
-# (optionnel) pastille d’état UX
+
+# 3) Nettoyage de base
+cal_df["Date"] = pd.to_datetime(cal_df["Date"], errors="coerce")
+cal_df = cal_df.dropna(subset=["Date"])
+
+# 4) Exclure les missions NO REFACT (toutes variantes)
+cal_df["MissionLib"] = cal_df["MissionLib"].astype(str)
+cal_df = cal_df[~cal_df["MissionLib"].str.contains("NO REFACT", case=False, na=False)]
+
+# Garde-fou après filtre
+if cal_df.empty:
+    st.warning("Après filtres (missions + NO REFACT), aucune dépense trouvée.")
+    st.stop()
+
+# 5) Pastille d’état UX
 if cal_file is None:
-    st.caption("🟢 Données calendrier chargées depuis OneDrive (session courante).")
+    st.caption("🟢 Données calendrier chargées depuis Base données (session courante).")
 else:
     st.caption("📄 Données calendrier chargées depuis le fichier importé.")
 
-        
+# # 6) Matrice optionnelle (pour ajuster le libellé mission affiché, sans casser les filtres)
+# mat_file = st.file_uploader(
+#     "➕ (optionnel) Matrice Expensya (.xlsx) pour afficher le libellé mission",
+#     type=["xlsx"],
+#     key="mat_for_cal"
+# )
+# client_to_label = {}
+# if mat_file is not None:
+#     try:
+#         _mat = pd.read_excel(mat_file)
+#         if {"Client (Référence)", "Modification Code Expensya"}.issubset(_mat.columns):
+#             client_to_label = dict(
+#                 zip(
+#                     _mat["Client (Référence)"].astype(str),
+#                     _mat["Modification Code Expensya"].astype(str),
+#                 )
+#             )
+#     except Exception:
+#         pass
 
+# if client_to_label:
+#     cal_df["MissionLib"] = (
+#         cal_df["Client (Référence)"]
+#         .astype(str)
+#         .map(client_to_label)
+#         .fillna(cal_df["MissionLib"])
+#     )
 
-# Matrice optionnelle (pour afficher un libellé mission lisible)
-mat_file = st.file_uploader(
-    "➕ (optionnel) Matrice Expensya (.xlsx) pour afficher le libellé mission",
-    type=["xlsx"],
-    key="mat_for_cal"
+# # 7) ZIP justificatifs optionnel (pour preview / download)
+# zip_for_calendar = st.file_uploader(
+#     "➕ (optionnel) ZIP des justificatifs (export Expensya) — pour prévisualiser/télécharger",
+#     type=["zip"],
+#     key="zip_for_calendar"
+# )
+# ====== DEBUG : comprendre pourquoi 228 ≠ 216 ======
+st.write("🚧 DEBUG — Lignes calendrier après filtres :", len(cal_df))
+
+# Nombre de lignes par mission
+st.write("Lignes par mission (Client (Référence)) :")
+st.dataframe(
+    cal_df.groupby("Client (Référence)")["Référence"]
+          .nunique()
+          .reset_index(name="Nb_lignes")
 )
-client_to_label = {}
-if mat_file is not None:
-    try:
-        _mat = pd.read_excel(mat_file)
-        if {"Client (Référence)", "Modification Code Expensya"}.issubset(_mat.columns):
-            client_to_label = dict(
-                zip(_mat["Client (Référence)"].astype(str),
-                    _mat["Modification Code Expensya"].astype(str))
-            )
-    except Exception:
-        pass
 
-cal_df["MissionLib"] = (
-    cal_df["Client (Référence)"].map(client_to_label).fillna(cal_df["Client (Référence)"])
+# Lignes suspectes : nom contenant 'total' ou montant vide
+suspect = cal_df[
+    cal_df["Nom de la dépense"].astype(str).str.contains("total", case=False, na=False)
+    | cal_df["TTC (EUR)"].isna()
+]
+st.write("Lignes suspectes (TOTAL / montant NaN) :")
+st.dataframe(
+    suspect[["Référence", "Date", "Nom de la dépense", "Client (Référence)", "MissionLib", "TTC (EUR)"]]
 )
 
-# ZIP justificatifs optionnel (pour preview / download)
-zip_for_calendar = st.file_uploader(
-    "➕ (optionnel) ZIP des justificatifs (export Expensya) — pour prévisualiser/télécharger",
-    type=["zip"],
-    key="zip_for_calendar"
-)
+# (optionnel) export des lignes pour comparaison dans Excel
+# suspect.to_excel("debug_suspect.xlsx", index=False)
+# st.download_button("📥 Télécharger les lignes suspectes", open("debug_suspect.xlsx","rb"), "debug_suspect.xlsx")
+
 # 8) Métriques (tu choisis ce que “Dépenses” représente)
 nb_lignes = len(cal_df)
 nb_refs_uniques = cal_df["Référence"].astype(str).nunique()
-# Métriques
+
 col1, col2, col3 = st.columns(3)
+# 👉 Si tu veux le nombre de *lignes* :
+# col1.metric("Dépenses", f"{nb_lignes:,}".replace(",", " "))
+
 # 👉 Si tu préfères le nombre de références uniques :
 col1.metric("Dépenses", f"{nb_refs_uniques:,}".replace(",", " "))
+
 col2.metric("Utilisateurs uniques", cal_df["Utilisateur"].nunique())
 col3.metric("Jours distincts", cal_df["Date"].dt.date.nunique())
+
 
 # Filtres
 with st.expander("🎛️ Filtres"):
@@ -670,24 +735,24 @@ st.plotly_chart(fig, use_container_width=True)
 ref_files = {}
 zf = None
 
-# 1) Cas A : l'utilisateur a uploadé un ZIP -> priorité
-if zip_for_calendar is not None:
-    try:
-        zf = zipfile.ZipFile(zip_for_calendar)
-        # (re)construit l'index à partir de l'upload
-        ref_files = {}
-        for name in zf.namelist():
-            base = os.path.basename(name)
-            if not base:
-                continue
-            # même normalisation que plus haut
-            m = re.match(r"^(\d+)[\s_\-\.].*", base) or re.search(r"(\d{3,})", base)
-            if m:
-                key = re.sub(r"\D","", m.group(1)).lstrip("0") or "0"
-                ref_files.setdefault(key, []).append(name)
-    except Exception as e:
-        st.warning(f"Impossible de lire le ZIP justificatifs uploadé : {e}")
-        zf = None
+# # 1) Cas A : l'utilisateur a uploadé un ZIP -> priorité
+# if zip_for_calendar is not None:
+#     try:
+#         zf = zipfile.ZipFile(zip_for_calendar)
+#         # (re)construit l'index à partir de l'upload
+#         ref_files = {}
+#         for name in zf.namelist():
+#             base = os.path.basename(name)
+#             if not base:
+#                 continue
+#             # même normalisation que plus haut
+#             m = re.match(r"^(\d+)[\s_\-\.].*", base) or re.search(r"(\d{3,})", base)
+#             if m:
+#                 key = re.sub(r"\D","", m.group(1)).lstrip("0") or "0"
+#                 ref_files.setdefault(key, []).append(name)
+#     except Exception as e:
+#         st.warning(f"Impossible de lire le ZIP justificatifs uploadé : {e}")
+#         zf = None
 
 # 2) Cas B : aucun upload -> on réutilise l'index et le ZIP internes OneDrive
 if zf is None and "receipts_zip_path" in st.session_state and "receipts_index" in st.session_state:
