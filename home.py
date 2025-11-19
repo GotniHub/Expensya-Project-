@@ -127,7 +127,7 @@ if st.button("Se connecter"):
         st.session_state["auth_user"] = username
         st.session_state["missions"] = USERS[username]["missions"]
         st.success(f"Bienvenue {username} 👋")
-        st.switch_page("pages/Justificatifs cloud.py")  # redirection vers App
+        st.switch_page("pages/Justificatifs local.py")  # redirection vers App
     else:
         st.error("❌ Identifiants incorrects")
 st.markdown("""
