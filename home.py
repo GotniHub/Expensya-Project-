@@ -10,7 +10,7 @@ st.title("🔐 Connexion à votre espace")
 st.markdown("<p>Accès réservé aux clients utilisateurs ADVENT+</p>", unsafe_allow_html=True)
 # 1. Base utilisateurs (login → mission)
 # -------------------------
-USERS = {
+USERS_S2_2024 = {
 
     "Valrhona SAS": {
         "password": "tR#8bPz4&YqL1mXs",
@@ -99,23 +99,347 @@ USERS = {
         "missions": ["vide"]
     },
 }
+
+# ==========================
+#  Dictionnaire S1 2025
+# ==========================
+
+# 1. Base utilisateurs (login → mission)
+# -------------------------
+USERS_S1_2025 = {
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "[131157] catman valrhona", #
+            "[106709]-valrhona sas rebond bu+ global", #
+            "[106710] valrhona sas rebond fsp", #
+            "[24685] - encadrement rcm ae", #
+            "[238010] sales academy", #
+            "[a113413 ] - rebond bu uk", #
+            "[s113402] - accompagnement europe du nord", #
+            "a113412 projet dollars" #
+        ]
+    },
+
+    "ADVENTAE PECO": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "[27233]-adventae peco" #
+
+        ]
+        
+    },
+    "VALRHONA INC": {
+        "password": "xV4!mQ8^bZ1&nWtX",
+        "missions": [
+            "teleprospection cadaff 2025" #
+        ]
+        
+    },  
+    "VILLARS MAITRE CHOCOLATIER": {
+        "password": "H9!vQe3@cZ6uR%wK",
+        "missions": [
+            "[38331]-villars-export" #
+
+        ]
+        
+    },
+    "ADVENTAE LATAM": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "[49130]-adventae latam" #
+
+        ]
+        
+    },
+
+    "Eclair Vuillemier": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "[a114001] eclair vuillemier - france eclair" #
+ 
+        ]
+        
+    },   
+
+    "PROSPECTION": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "[a120101] prospection client" #
+
+        ]
+        
+    }, 
+
+    "SAVENCIA GOURMET": {
+        "password": "cD7%yS2&kQ4!zXnM",
+        "missions": [
+            "[a112806]", #
+            "savencia confluence" #
+        
+        ]
+        
+    },
+
+    "Sinodis": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "[p123001] - sinodis adv+" #
+        ]
+        
+    },   
+    "Caraman": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "[p144101] - recette camaran" #
+        ]
+        
+    },   
+
+    "LES CELLIERS D'ORFEE": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "les celliers d'orfee" #
+        ]
+        
+    },    
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
+# ==========================
+#  Dictionnaire S2 2025
+# ==========================
+
+# 1. Base utilisateurs (login → mission)
+# -------------------------
+USERS_S2_2025 = {
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "[238010] sales academy" #
+        ]
+    },
+
+    "ADVENTAE PECO": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "[27233]-adventae peco" #
+
+        ]
+        
+    },
+    "VALRHONA INC": {
+        "password": "xV4!mQ8^bZ1&nWtX",
+        "missions": [
+            "teleprospection cadaff 2025" #
+        ]
+        
+    },  
+    "VILLARS MAITRE CHOCOLATIER": {
+        "password": "H9!vQe3@cZ6uR%wK",
+        "missions": [
+            "[38331]-villars-export" #
+
+        ]
+        
+    },
+    "ADVENTAE LATAM": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "[49130]-adventae latam" #
+
+        ]
+        
+    },
+
+    "Eclair Vuillemier": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "[a114001] eclair vuillemier - france eclair" #
+ 
+        ]
+        
+    },   
+
+    "PROSPECTION": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "[a120101] prospection client" #
+
+        ]
+        
+    }, 
+
+    "SAVENCIA GOURMET": {
+        "password": "cD7%yS2&kQ4!zXnM",
+        "missions": [
+            "[a112806]", #
+            "savencia confluence" #
+        
+        ]
+        
+    },
+
+    "Sinodis": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "[p123001] - sinodis adv+" #
+        ]
+        
+    },   
+    "Caraman": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "[p144101] - recette camaran" #
+        ]
+        
+    },   
+
+    "LES CELLIERS D'ORFEE": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "les celliers d'orfee" #
+        ]
+        
+    },    
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
+# ==========================
+#  Dictionnaire Thierry Riva S1 2025
+# ==========================
+
+# 1. Base utilisateurs (login → mission)
+# -------------------------
+
+USERS_TR_S1_2025 = {
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "[98966]-advs_rebond"
+        ]
+    },
+
+    "VILLARS MAITRE CHOCOLATIER": {
+        "password": "H9!vQe3@cZ6uR%wK",
+        "missions": [
+            "[38331]-villars-export"
+
+        ]
+        
+    },
+    "ADVENTAE MENA": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "[41888] - adventae mena"
+
+        ]
+        
+    },
+    "ADVENTAE PECO": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "[27233]-adventae peco"
+
+        ]
+        
+    },
+
+    "SAVENCIA GOURMET": {
+        "password": "cD7%yS2&kQ4!zXnM",
+        "missions": [
+            "savencia confluence"
+        
+        ]
+        
+    },
+
+    "Sinodis": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "[24030]-sinodis advs"
+        ]
+        
+    },   
+      
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
+# ==========================
+#  Périodes & liens OneDrive
+# ==========================
+PERIODS = {
+    "Consultants internes S2 2024 ": {
+        "users": USERS_S2_2024,
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/EahoQ8gXXhJLpKJy4FtfyvsBsKc7r60cII0KbVjkorzH6g?download=1"
+    },
+    "Consultants internes S1 2025": {
+        "users": USERS_S1_2025,
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/Ef8LL-Y_mNhOlCQlKHlQs1wBXzoorlA-dVNmoZ07zj3oNw?download=1"
+    },
+    "THIERRY RIVA S1 2025": {
+        "users": USERS_TR_S1_2025,
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/EVAEu6MEKhVOqn3UhLlYSyEBNOF9OuzIaUxNd0zjqFLqaw?download=1"
+    },
+    "Consultants internes S2 2025": {
+        "users": USERS_S2_2025,
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQARlBGWZE62ToBVb2gSDdGWAYAfUjvKq4D6HuVQBOSfWgs?download=1"
+    },
+}
+
 # Initialiser session
 if "auth_user" not in st.session_state:
     st.session_state["auth_user"] = None
 if "missions" not in st.session_state:
     st.session_state["missions"] = []
+
+if "current_period" not in st.session_state:
+    st.session_state["current_period"] = "Consultants internes S1 2025"  # période par défaut
+if "onedrive_url" not in st.session_state:
+    st.session_state["onedrive_url"] = None
+
+# Choix de la période Expensya (S1 / S2)
+period_names = list(PERIODS.keys())
+default_idx = period_names.index(st.session_state["current_period"]) \
+    if st.session_state["current_period"] in period_names else 0
+
+period_choice = st.selectbox(
+    "📁 Période de données Expensya",
+    period_names,
+    index=default_idx
+)
+
+st.session_state["current_period"] = period_choice
+
 # Formulaire login
 username = st.text_input("Identifiant")
 password = st.text_input("Mot de passe", type="password")
 
-if st.button("Se connecter"):
+if st.button("🔑 Se connecter"):
+    # Choisir le dictionnaire USERS correspondant à la période sélectionnée
+    period_cfg = PERIODS[st.session_state["current_period"]]
+    USERS = period_cfg["users"]
+
     if username in USERS and USERS[username]["password"] == password:
+        
         st.session_state["auth_user"] = username
         st.session_state["missions"] = USERS[username]["missions"]
-        st.success(f"Bienvenue {username} 👋")
-        st.switch_page("pages/Justificatifs local.py")  # redirection vers App
+        st.session_state["onedrive_url"] = period_cfg["onedrive_url"]
+
+        st.success(f"Bienvenue {username} 👋 (période : {st.session_state['current_period']})")
+        st.switch_page("pages/Justificatifs local.py")
     else:
         st.error("❌ Identifiants incorrects")
+
 st.markdown("""
 <div style="text-align: center; color: #666; padding: 2rem; margin-top: 3rem; background: linear-gradient(to right, #f8f9fa, #e9ecef); border-radius: 10px;">
     <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">

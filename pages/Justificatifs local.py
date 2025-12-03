@@ -33,6 +33,12 @@ if "auth_user" not in st.session_state or st.session_state["auth_user"] is None:
 
 user = st.session_state["auth_user"]
 missions = st.session_state.get("missions", [])
+# =============================
+#    SIDEBAR – Session Expensya
+# =============================
+
+session = st.session_state.get("current_period", "Aucune session")
+
 
 # Choix mission
 if len(missions) == 1:
@@ -48,6 +54,7 @@ else:
         st.warning("⚠️ Aucune mission sélectionnée, merci d'en choisir au moins une.")
         st.stop()
 
+#    SIDEBAR INFO USER + SESSION
 # Bloc utilisateur (carte latérale)
 card_html = f"""
 <div style="
@@ -61,12 +68,26 @@ card_html = f"""
     transform: perspective(1000px) rotateX(2deg) rotateY(-1deg);
 ">
     <h4 style="margin: 0; font-size: 1.2rem; font-weight: bold;">👤 {user}</h4>
-    <p style="margin: 0; font-size: 0.9rem; opacity: 0.95;">✔️  Connecté avec succès</p>
+    <p style="margin: 0; font-size: 0.9rem; opacity: 0.95;">🟢  Connecté avec succès</p>
 </div>
 """
 st.sidebar.markdown(card_html, unsafe_allow_html=True)
 
-if st.sidebar.button("🚪 Déconnexion"):
+st.sidebar.markdown(f"""
+<div style="
+    padding: 12px;
+    background-color: rgba(194, 221, 255, 0.55);
+    border-left: 4px solid #2E86C1;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+">
+<b>🟢 Session Expensya</b><br>
+{session}
+</div>
+""", unsafe_allow_html=True)
+
+if st.sidebar.button("⏻ Déconnexion"):
     st.session_state["auth_user"] = None
     st.switch_page("home.py")
 
@@ -76,7 +97,18 @@ if st.sidebar.button("🚪 Déconnexion"):
 # Exctraction S1 2025 (actuel) :
 # ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/Ef8LL-Y_mNhOlCQlKHlQs1wBXzoorlA-dVNmoZ07zj3oNw?download=1"
 # Exctraction S2 2024 :
-ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/EahoQ8gXXhJLpKJy4FtfyvsBsKc7r60cII0KbVjkorzH6g?download=1"
+# ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/EahoQ8gXXhJLpKJy4FtfyvsBsKc7r60cII0KbVjkorzH6g?download=1"
+# Extraction TR S1 2025 :
+
+# ONEDRIVE_URL = "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/EVAEu6MEKhVOqn3UhLlYSyEBNOF9OuzIaUxNd0zjqFLqaw?download=1"
+# -------------------------
+# Lien OneDrive défini lors de la connexion (en fonction de la période)
+ONEDRIVE_URL = st.session_state.get("onedrive_url")
+
+if not ONEDRIVE_URL:
+    st.error("Aucun lien OneDrive n'est défini. Retourne à la page d'accueil et reconnecte-toi.")
+    st.stop()
+
 # =============================
 #         UTILITAIRES
 # =============================
