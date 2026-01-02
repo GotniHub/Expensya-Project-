@@ -123,7 +123,7 @@ USERS_S1_2025 = {
     },
 
     "ADVENTAE PECO": {
-        "password": "sM2^Lp7Gz#8aXyVf",
+        "password": "Fr@5nPw3!YtK8bXs",
         "missions": [
             "[27233]-adventae peco" #
 
@@ -220,25 +220,61 @@ USERS_S2_2025 = {
     "Valrhona SAS": {
         "password": "tR#8bPz4&YqL1mXs",
         "missions": [
-            "[238010] sales academy" #
+            "[131157] catman valrhona", #
+            "[106709]-valrhona sas rebond bu+ global", #
+            "[24685] - encadrement rcm ae", #
+            "[238010] sales academy", #
+            "[a113409]", #
+            "[a123402] coaching valrhona uk", # 
+            "[s113402] - accompagnement europe du nord", #
         ]
     },
 
-    "ADVENTAE PECO": {
-        "password": "sM2^Lp7Gz#8aXyVf",
+    "PARIANI": {
+        "password": "dL%9aQz2^MpR6tYw",
         "missions": [
-            "[27233]-adventae peco" #
+            "[a114501] pariani structuration marketing & senso" #
+        ]
+    },
+
+    "ANTIGON": {
+        "password": "xP&4bTs7#YqL1mZn",
+        "missions": [
+            "[a114801] antigon coaching opérationnel" #
+        ]
+    },
+
+    "PROSPECTION": {
+        "password": "Qa!6rVz8@NtP3mXy",
+        "missions": [
+            "[a120101] prospection client" #
+        ]
+    },  
+
+    "NUTRITION ET SANTE": {
+        "password": "mY#2kPx9&LrT7aWs",
+        "missions": [
+            "[a114701] audit organisation & politique commerciale food se" #
+        ]
+    },
+    
+    "MASDEU": {
+    "password": "Bq5&nCz9!Tt4@hWp",
+    "missions": [
+        "[a113901] masdeu_structuration politique commerciale export", #
+        "[a113902]-test développement commercial itinérant ext" #
 
         ]
-        
     },
+
     "VALRHONA INC": {
         "password": "xV4!mQ8^bZ1&nWtX",
         "missions": [
             "teleprospection cadaff 2025" #
         ]
         
-    },  
+    },
+
     "VILLARS MAITRE CHOCOLATIER": {
         "password": "H9!vQe3@cZ6uR%wK",
         "missions": [
@@ -247,6 +283,7 @@ USERS_S2_2025 = {
         ]
         
     },
+
     "ADVENTAE LATAM": {
         "password": "sM2^Lp7Gz#8aXyVf",
         "missions": [
@@ -265,18 +302,37 @@ USERS_S2_2025 = {
         
     },   
 
-    "PROSPECTION": {
-        "password": "uF8#rK2$yV7pXnQs",
+    "ANDROS": {
+        "password": "Lp@3xTs7#WqK9bZn",
         "missions": [
-            "[a120101] prospection client" #
-
+            "[a110702] andros - projet spare" #
+ 
         ]
         
-    }, 
+    },   
+
+    "delice & creation export (dcex)": {
+        "password": "nW%6tRx2^ZpL8aQm",
+        "missions": [
+            "delice & creation export (dcex)" #
+ 
+        ]
+        
+    },   
+
+    "SOCALAIT": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "a133201 socalait 2025" #
+ 
+        ]
+        
+    },  
 
     "SAVENCIA GOURMET": {
         "password": "cD7%yS2&kQ4!zXnM",
         "missions": [
+            "[a112805] upgrade dg global", #
             "[a112806]", #
             "savencia confluence" #
         
@@ -291,8 +347,9 @@ USERS_S2_2025 = {
         ]
         
     },   
+
     "Caraman": {
-        "password": "xR4!mQ8^bZ1&nKtP",
+        "password": "Za#7nPw3&YtL1mQx",
         "missions": [
             "[p144101] - recette camaran" #
         ]
@@ -300,7 +357,7 @@ USERS_S2_2025 = {
     },   
 
     "LES CELLIERS D'ORFEE": {
-        "password": "xR4!mQ8^bZ1&nKtP",
+        "password": "kR^9bPz2!YqL6mXs",
         "missions": [
             "les celliers d'orfee" #
         ]
@@ -344,7 +401,7 @@ USERS_TR_S1_2025 = {
         
     },
     "ADVENTAE PECO": {
-        "password": "sM2^Lp7Gz#8aXyVf",
+        "password": "Fr@5nPw3!YtK8bXs",
         "missions": [
             "[27233]-adventae peco"
 

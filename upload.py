@@ -15,9 +15,10 @@ excel_file = st.file_uploader("📑 Importer le fichier Excel (Rapport)", type=[
 mapping_file = st.file_uploader("📑 Importer le fichier Matrice Expensya", type=["xlsx"])
 zip_file = st.file_uploader("🗜️ Importer le dossier ZIP des pièces justificatives", type=["zip"])
 
-def nettoyer_nom(nom):
-    """ Nettoyer le nom de mission/utilisateur pour éviter les caractères interdits """
-    return re.sub(r'[<>:"/\\|?*]', "_", str(nom).strip())
+def nettoyer_nom(nom, max_len=60):
+    nom = re.sub(r'[<>:"/\\|?*]', "_", str(nom).strip())
+    return nom[:max_len]
+
 
 if excel_file and zip_file and mapping_file:
     if st.button("🚀 Lancer le traitement"):
@@ -61,7 +62,9 @@ if excel_file and zip_file and mapping_file:
             df["Mission_Clean"] = df["Mission_Final"].apply(lambda x: nettoyer_nom(x).lower())
 
             # Créer dossier temporaire
-            temp_dir = "temp_result"
+            import tempfile
+            temp_dir = tempfile.mkdtemp(prefix="exp_")  # ex: C:\Users\...\AppData\Local\Temp\exp_xxxx
+
             if os.path.exists(temp_dir):
                 shutil.rmtree(temp_dir)
             os.makedirs(temp_dir)
