@@ -449,7 +449,7 @@ PERIODS = {
     },
     "Consultants internes S2 2025": {
         "users": USERS_S2_2025,
-        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQARlBGWZE62ToBVb2gSDdGWAYAfUjvKq4D6HuVQBOSfWgs?download=1"
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQBDtBI36XJ9Q57VYGvpCJYEAXP-k_P5BIT5ICeTQalqUH8?download=1"
     },
 }
 
