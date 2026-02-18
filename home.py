@@ -431,6 +431,132 @@ USERS_TR_S1_2025 = {
         "missions": ["vide"]
     },
 }
+
+# ==========================
+#  Dictionnaire Thierry Riva S1 2025
+# ==========================
+
+# 1. Base utilisateurs (login → mission)
+# -------------------------
+
+USERS_TR_S2_2025 = {
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "[98966]-cfl_advs_management stratégique" #
+        ]
+    },
+
+
+    "ADVENTAE PECO": {
+        "password": "Fr@5nPw3!YtK8bXs",
+        "missions": [
+            "[27233]-ae_peco" #
+
+        ]
+        
+    },
+
+    "SAVENCIA GOURMET": {
+        "password": "cD7%yS2&kQ4!zXnM",
+        "missions": [
+            "savencia confluence"
+        
+        ]
+        
+    },
+
+    "Sinodis": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "[24030]-sinodis advs" #
+        ]
+        
+    },   
+
+    "ADVENTAE LATAM": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "[49130]-adventae latam" 
+
+        ]
+        
+    },      
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "[106709]-valrhona sas rebond bu+ global", #
+            "[238010] sales academy", #
+        ]
+    },
+
+    "ANDROS": {
+        "password": "Lp@3xTs7#WqK9bZn",
+        "missions": [
+            "[a110702] andros - projet spare" #
+ 
+        ]
+        
+    },    
+
+    "PARIANI": {
+        "password": "dL%9aQz2^MpR6tYw",
+        "missions": [
+            "[a114501] pariani structuration marketing & senso", #
+            "[a114502] pariani - andrea coaching" #
+        ]
+    }, 
+
+    "PROSPECTION": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "[a120101] prospection client" #
+
+        ]
+        
+    }, 
+
+    "INTERNE": {
+        "password": "uFDGhskpkV7pXnFt",
+        "missions": [
+            "[ac80907] internal teams meeting" #
+
+        ]
+        
+    }, 
+
+    "AU CHAI VOUS": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "acv090001 au chai vous" #
+
+        ]
+        
+    }, 
+
+    "LES CELLIERS D'ORFEE": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "les celliers d'orfee" #
+        ]
+        
+    },  
+
+    "VALRHONA INC": {
+        "password": "xV4!mQ8^bZ1&nWtX",
+        "missions": [
+            "teleprospection cadaff 2025"
+        ]
+        
+    },    
+
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
 # ==========================
 #  Périodes & liens OneDrive
 # ==========================
@@ -451,6 +577,10 @@ PERIODS = {
         "users": USERS_S2_2025,
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQBDtBI36XJ9Q57VYGvpCJYEAXP-k_P5BIT5ICeTQalqUH8?download=1"
     },
+    "THIERRY RIVA S2 2025": {
+        "users": USERS_TR_S2_2025,
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQDXgO5qoprSTYwOkua8rfuEAavnZpC9OqNa8ZoaOEt75SE?download=1"
+    },    
 }
 
 # Initialiser session
