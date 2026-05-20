@@ -489,6 +489,7 @@ USERS_TR_S2_2025 = {
         "missions": [
             "[106709]-valrhona sas rebond bu+ global", #
             "[238010] sales academy", #
+            "[98966]-cfl_advs_management stratégique"
         ]
     },
 
@@ -557,6 +558,119 @@ USERS_TR_S2_2025 = {
         "missions": ["vide"]
     },
 }
+USERS_S1_2026 = {
+
+    "MASDEU": {
+    "password": "Bq5&nCz9!Tt4@hWp",
+    "missions": [
+    
+        "[a113902]-test développement commercial itinérant ext" #
+
+        ]
+    },
+
+    "Advent+": {
+        "password": "adv#8bPz4&YqL1mXs",
+        "missions": [
+            "adv+_formation interne" #
+        ]
+    },
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "cfl_bu europ s",
+            "cfl_bu france", #
+            "cfl_ingeniering",
+            "sales academy",
+            "trst_cat man mb",
+            "wsa_ingé_fsp"
+        ]
+    },
+
+    "Eclair Vuillemier": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "eclair vuilleumier"
+
+        ]
+        
+    }, 
+
+    "NUTRITION ET SANTE": {
+        "password": "mY#2kPx9&LrT7aWs",
+        "missions": [
+            "nutrition & santé mission transition" #
+        ]
+    },
+
+    "Partner+": {
+        "password": "pt@3xTs7#WqK9bZn",
+        "missions": [
+            "prj_formation wsa 2.0" #
+ 
+        ]
+        
+    }, 
+
+    "Sinodis": {
+        "password": "xR4!mQ8^bZ1&nKtP",
+        "missions": [
+            "cfl_bu chine [sinodis]" #
+        ]
+        
+    },   
+
+    "ADVENTAE LATAM": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "ae_latam" 
+
+        ]
+        
+    },      
+
+    "ANDROS": {
+        "password": "Lp@3xTs7#WqK9bZn",
+        "missions": [
+            "andros projet spare" #
+ 
+        ]
+        
+    },    
+
+    "PARIANI": {
+        "password": "dL%9aQz2^MpR6tYw",
+        "missions": [
+            "bud maison [pariani]",
+            "pariani – andrea coaching"
+            #
+        ]
+    }, 
+
+    "PROSPECTION": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "prospection client" #
+
+        ]
+        
+    }, 
+
+    "INTERNE": {
+        "password": "uFDGhskpkV7pXnFt",
+        "missions": [
+            "marketing opérationnel adventae" #
+
+        ]
+        
+    }, 
+ 
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
 # ==========================
 #  Périodes & liens OneDrive
 # ==========================
@@ -580,7 +694,11 @@ PERIODS = {
     "THIERRY RIVA S2 2025": {
         "users": USERS_TR_S2_2025,
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQDXgO5qoprSTYwOkua8rfuEAavnZpC9OqNa8ZoaOEt75SE?download=1"
-    },    
+    },
+    "Consultants internes S1 trimestre 1 2026": {   
+        "users": USERS_S1_2026,  # réutilise les mêmes utilisateurs que S1 2025
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQCSFmh7-IGSSIWTj1D95esxATcdfVEe6lBd3rSRnKvouWM?download=1"
+    },
 }
 
 # Initialiser session
