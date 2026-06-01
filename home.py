@@ -749,7 +749,7 @@ PERIODS = {
         "users": USERSAF_S1_2026,  # réutilise les mêmes utilisateurs que S1 2025
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQBqhOHg6QzURZ3Ngb2475nLAZSUGYTQvdhg3MjxM3iURaM?download=1"
     },
-    "Lionel gerfraud Eclair Vuilleumuier": {   
+    "Lionel gerfraud Eclair Vuilleumuier s1 2026": {   
         "users": USERSLG_S1_2026,  # réutilise les mêmes utilisateurs que S1 2025
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQAD6Fh4bUXCSpjxTTNQuypAAcZmRqPio5VwZGXissfcH3E?download=1"
     },    
