@@ -671,6 +671,52 @@ USERS_S1_2026 = {
         "missions": ["vide"]
     },
 }
+USERSAF_S1_2026 = {
+
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "cfl_bu france", #
+        ]
+    },
+ 
+
+    "PARIANI": {
+        "password": "dL%9aQz2^MpR6tYw",
+        "missions": [
+            "bud maison [pariani]",
+            #
+        ]
+    }, 
+
+    "SAVENCIA GOURMET": {
+        "password": "cD7%yS2&kQ4!zXnM",
+        "missions": [
+            "[a112806]"
+        
+        ]
+        
+    },
+
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
+USERSLG_S1_2026 = {
+
+
+    "Eclair Vuillemier": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "eclair vuilleumier" #
+ 
+        ]
+        
+    },
+
+}
 # ==========================
 #  Périodes & liens OneDrive
 # ==========================
@@ -699,6 +745,14 @@ PERIODS = {
         "users": USERS_S1_2026,  # réutilise les mêmes utilisateurs que S1 2025
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQCSFmh7-IGSSIWTj1D95esxATcdfVEe6lBd3rSRnKvouWM?download=1"
     },
+    "Bureau maroc S1 trimestre 1 2026": {   
+        "users": USERSAF_S1_2026,  # réutilise les mêmes utilisateurs que S1 2025
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQBqhOHg6QzURZ3Ngb2475nLAZSUGYTQvdhg3MjxM3iURaM?download=1"
+    },
+    "Lionel gerfraud Eclair Vuilleumuier": {   
+        "users": USERSLG_S1_2026,  # réutilise les mêmes utilisateurs que S1 2025
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQAD6Fh4bUXCSpjxTTNQuypAAcZmRqPio5VwZGXissfcH3E?download=1"
+    },    
 }
 
 # Initialiser session
