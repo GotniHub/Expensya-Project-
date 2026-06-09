@@ -717,6 +717,109 @@ USERSLG_S1_2026 = {
     },
 
 }
+USERS_TR_S1_2026 = {
+
+    "SAVENCIA GOURMET": {
+        "password": "cD7%yS2&kQ4!zXnM",
+        "missions": [
+            "[a112805] upgrade dg global", #      
+        ]
+        
+    },    
+    "VILLARS MAITRE CHOCOLATIER": {
+        "password": "H9!vQe3@cZ6uR%wK",
+        "missions": [
+            "[38331]-villars-export"
+
+        ]
+        
+    },
+    "Advent+": {
+        "password": "adv#8bPz4&YqL1mXs",
+        "missions": [
+            "adv+_man tr", #
+            "adv+_marketing global",
+            "mod_senso"
+        ]
+    },
+
+    "ADVENTAE GLOBAL": {
+        "password": "SXFG^Lp7Gz#8a552vs",
+        "missions": [
+            "ae_groupe" 
+
+        ]
+    },     
+
+    "ADVENTAE MENA": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "ae_mena"
+
+        ]
+        
+    },
+
+    "ADVENTAE PECO": {
+        "password": "Fr@5nPw3!YtK8bXs",
+        "missions": [
+            "ae_peco" #
+
+        ]
+        
+    },
+
+    "AU CHAI VOUS": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "au chai vous" #
+
+        ]
+        
+    },  
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "cfl_advs_management stratégique", #
+            "cfl_bu europ s",
+
+        ]
+    },
+   
+
+    "ADVENTAE LATAM": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "ae_latam" 
+
+        ]
+        
+    },        
+
+    "PARIANI": {
+        "password": "dL%9aQz2^MpR6tYw",
+        "missions": [
+            "bud maison [pariani]",
+            "pariani – andrea coaching"
+            #
+        ]
+    }, 
+
+    "PROSPECTION": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "prospection client" #
+
+        ]
+        
+    }, 
+ 
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
 # ==========================
 #  Périodes & liens OneDrive
 # ==========================
@@ -753,6 +856,10 @@ PERIODS = {
         "users": USERSLG_S1_2026,  # réutilise les mêmes utilisateurs que S1 2025
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQAD6Fh4bUXCSpjxTTNQuypAAcZmRqPio5VwZGXissfcH3E?download=1"
     },    
+    "THIERRY RIVA S1 trimestre 1 2026": {
+        "users": USERS_TR_S1_2026,
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQCkbqMuo_L8T6g67GGlaa3GAdDeq0UR7OXk-cMaZ1wHxOI?download=1"
+    },
 }
 
 # Initialiser session
