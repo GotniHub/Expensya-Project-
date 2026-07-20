@@ -190,7 +190,7 @@ USERS_S1_2025 = {
         
     },   
     "Caraman": {
-        "password": "xR4!mQ8^bZ1&nKtP",
+        "password": "Za#7nPw3&YtL1mQx",
         "missions": [
             "[p144101] - recette camaran" #
         ]
@@ -820,6 +820,85 @@ USERS_TR_S1_2026 = {
         "missions": ["vide"]
     },
 }
+
+USERS_S1T2_2026 = {
+
+    "MASDEU": {
+    "password": "Bq5&nCz9!Tt4@hWp",
+    "missions": [
+    
+        "[a113902]-test développement commercial itinérant ext" #
+
+        ]
+    },
+
+    "Advent+": {
+        "password": "adv#8bPz4&YqL1mXs",
+        "missions": [
+            "adv+_formation interne" #
+        ]
+    },
+
+    "BITZER": {
+        "password": "SdF#8bPzlb5YqL1mXs",
+        "missions": [
+            "bitzer green point" #
+        ]
+    },
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "cfl_bu europ s",
+            "cfl_bu apac",
+            "cfl_bu europ s",#
+            "cfl_ingeniering",
+            "trst_cat man mb",
+            "wsa_ingé_fsp",
+            "wsa_ta_fsp"
+        ]
+    },
+
+    "FRUISEC": {
+        "password": "js8#rK2$yV96MXnQs",
+        "missions": [
+            "cfl_bud autres maisons"
+
+        ]
+        
+    }, 
+
+    "Caraman": {
+        "password": "Za#7nPw3&YtL1mQx",
+        "missions": [
+            "développement recette caraman t4" #
+        ]
+    },
+
+    "SAVENCIA GOURMET": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "cfl_transition cheffe" 
+
+        ]
+        
+    },      
+   
+
+    "PARIANI": {
+        "password": "dL%9aQz2^MpR6tYw",
+        "missions": [
+            "bud maison [pariani]",
+            "pariani – andrea coaching"
+        ]
+    }, 
+ 
+ 
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
 # ==========================
 #  Périodes & liens OneDrive
 # ==========================
@@ -860,6 +939,10 @@ PERIODS = {
         "users": USERS_TR_S1_2026,
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQCkbqMuo_L8T6g67GGlaa3GAdDeq0UR7OXk-cMaZ1wHxOI?download=1"
     },
+    "Consultants internes S1 trimestre 2 2026": {   
+        "users": USERS_S1T2_2026,  # réutilise les mêmes utilisateurs que S1 2025
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQDDeqjKzzU6TJo8GYOCHa0gAfxVSUGtE7chAcAxg54REdA?download=1"
+    },    
 }
 
 # Initialiser session
