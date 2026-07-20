@@ -851,7 +851,7 @@ USERS_S1T2_2026 = {
         "missions": [
             "cfl_bu europ s",
             "cfl_bu apac",
-            "cfl_bu europ s",#
+            "cfl_bu europe n",#
             "cfl_ingeniering",
             "trst_cat man mb",
             "wsa_ingé_fsp",
