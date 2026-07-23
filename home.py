@@ -899,6 +899,58 @@ USERS_S1T2_2026 = {
         "missions": ["vide"]
     },
 }
+
+USERS_TR_S1T2_2026 = {
+
+    "ADVENTAE MENA": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "ae_mena"
+
+        ]
+        
+    },
+
+    "ADVENTAE PECO": {
+        "password": "Fr@5nPw3!YtK8bXs",
+        "missions": [
+            "ae_peco" #
+
+        ]
+        
+    },
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "cfl_advs_management stratégique", #
+        ]
+    },
+   
+
+    "ADVENTAE LATAM": {
+        "password": "sM2^Lp7Gz#8aXyVf",
+        "missions": [
+            "ae_latam" 
+
+        ]
+        
+    },        
+
+    "PROSPECTION": {
+        "password": "uF8#rK2$yV7pXnQs",
+        "missions": [
+            "prospection client" #
+
+        ]
+        
+    }, 
+ 
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
 # ==========================
 #  Périodes & liens OneDrive
 # ==========================
@@ -943,6 +995,10 @@ PERIODS = {
         "users": USERS_S1T2_2026,  # réutilise les mêmes utilisateurs que S1 2025
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQDDeqjKzzU6TJo8GYOCHa0gAfxVSUGtE7chAcAxg54REdA?download=1"
     },    
+    "THIERRY RIVA S1 trimestre 2 2026": {
+        "users": USERS_TR_S1T2_2026,
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQD_xr9lxASZTbZSvVrAQjP7AbCccljvTCExM0r6gVDWMO0?download=1"
+    },
 }
 
 # Initialiser session
