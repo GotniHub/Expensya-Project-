@@ -951,6 +951,22 @@ USERS_TR_S1T2_2026 = {
         "missions": ["vide"]
     },
 }
+USERSAF_S1T2_2026 = {
+
+
+    "Valrhona SAS": {
+        "password": "tR#8bPz4&YqL1mXs",
+        "missions": [
+            "cfl_bu france",
+            "cfl_bu europ s", #
+        ]
+    },
+ 
+    "vide": {
+        "password": "0000",
+        "missions": ["vide"]
+    },
+}
 # ==========================
 #  Périodes & liens OneDrive
 # ==========================
@@ -998,6 +1014,10 @@ PERIODS = {
     "THIERRY RIVA S1 trimestre 2 2026": {
         "users": USERS_TR_S1T2_2026,
         "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQD_xr9lxASZTbZSvVrAQjP7AbCccljvTCExM0r6gVDWMO0?download=1"
+    },
+    "Bureau maroc S1 trimestre 2 2026": {   
+        "users": USERSAF_S1T2_2026,  # réutilise les mêmes utilisateurs que S1 2025
+        "onedrive_url": "https://adventplus-my.sharepoint.com/:u:/g/personal/igotni_adv-sud_fr/IQCPyENlPFhCR7jbfmdaMm63AcY9opHfrcji-B-HmCkCDxM?download=1"
     },
 }
 
